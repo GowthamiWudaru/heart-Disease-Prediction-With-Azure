@@ -15,14 +15,17 @@ I loaded the cleaveland data from <a href="https://github.com/GowthamiWudaru/hea
 
 ## Automated ML
 
-I set experiment_timeout_minutes(time after which experiment is timed out), model_explainability(best model is explained), compute_cluster(multiple runs at a time) for automl run.
+I set experiment_timeout_minutes(time after which experiment is timed out), model_explainability(best model is explained), compute_cluster(multiple runs at a time) for automl run. The task is a classification(binary) task as we are trying to predict presence or absence of heart disease
 
 <img alt="automlRunDetails" src="https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/automlrunDetails.png">
 
 ### Results
-The best model was VotingEnsemble with accuracy of 0.84870
+
+The best model was VotingEnsemble with accuracy of 0.84870. Voting ensemble works by combining the predictions from multiple models. In classification, the final prediction is the majority vote of contributing models.
 
 <img alt="automlbestRun" src="https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/automlbestrun.png">
+
+The model can be improved by further exploring the automl config(like adding custom FeaturizationConfig)
 
 ## Hyperparameter Tuning
 
@@ -33,9 +36,12 @@ I chose Logistic Regression model and tuned hyperparameters C(Inverse of regular
 <img alt="hyperdriverunDetails" src="https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/hyperDriveRunDetails.png">
 
 ### Results
+
 The best model was a Logistic Regression model with an accuracy 0.88888888 for Regularization strength 100 amd max iteration 400
 
 <img alt="hyperdrivebestRun" src="https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/hyperdrivebestrun.png">
+
+The model can be improved further by exploring different sampling techniques(grid sampling, bayesian sampling), early termination policy(Median stopping policy, Truncation selection policy, No termination policy)
 
 ## Model Deployment
 
