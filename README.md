@@ -15,15 +15,17 @@ I loaded the cleaveland data from <a href="https://github.com/GowthamiWudaru/hea
 
 ## Automated ML
 
-I set experiment_timeout_minutes(time after which experiment is timed out), model_explainability(best model is explained), compute_cluster(multiple runs at a time) for automl run. The task is a classification(binary) task as we are trying to predict presence or absence of heart disease.
+I set experiment_timeout_minutes(time after which experiment is timed out), model_explainability(best model is explained), compute_cluster(multiple runs at a time) for automl run. The task is a classification(binary) task as we are trying to predict presence or absence of heart disease. I selected the primary metric as accuracy as the dataset is balanced.
 
-<img alt="automlRunDetails" src="https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/automlrunDetails.png">
+![automlRunDetails](https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/automlrunDetails.png)
 
 ### Results
 
 The best model was VotingEnsemble with accuracy of 0.84870. Voting ensemble works by combining the predictions from multiple models. In classification, the final prediction is the majority vote of contributing models.The voting ensemble has parameters degree=3, gamma='scale', kernel='rbf', max_iter=-1, probability=True, random_state=None, shrinking=True, tol=0.001.
 
-<img alt="automlbestRun" src="https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/automlbestrun.png">
+![automlbestRun"](https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/automlbestrun.png)
+
+### Future Work
 
 The model can be improved by further exploring the automl config(like adding custom FeaturizationConfig)
 
@@ -31,23 +33,25 @@ The model can be improved by further exploring the automl config(like adding cus
 
 I chose Logistic Regression model and tuned hyperparameters C(Inverse of regularization strength. Smaller values cause stronger regularization) and max-iter(Maximum number of iterations to converge). I used RandomParameterSampling with params max_iter(can have values 100,200,300,400) and C (can have 0.001, 0.01, 0.1, 1, 10, 100, 1000) and Bandit Policy with evaluation_interval(The frequency for applying the policy) as 2 and slack_factor(The ratio used to calculate the allowed distance from the best performing experiment run) as 0.1.
 
-<img alt="hyperdriverunning" src="https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/hyperdriverunning.png">
+![hyperdriverunning](https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/hyperdriverunning.png)
 
-<img alt="hyperdriverunDetails" src="https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/hyperDriveRunDetails.png">
+![hyperdriverunDetails](https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/hyperDriveRunDetails.png)
 
 ### Results
 
 The best model was a Logistic Regression model with an accuracy 0.88888888 for Regularization strength 100 amd max iteration 400
 
-<img alt="hyperdrivebestRun" src="https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/hyperdrivebestrun.png">
+![hyperdrivebestRun](https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/hyperdrivebestrun.png)
 
-The model can be improved further by exploring different sampling techniques(grid sampling, bayesian sampling), early termination policy(Median stopping policy, Truncation selection policy, No termination policy)
+### Future Work
+
+The model can be improved further by exploring different sampling techniques(grid sampling - grid sampling over a hyperparameter search space, bayesian sampling - tries to intelligently pick the next sample of hyperparameters, based on how the previous samples performed, such that the new sample improves the reported primary metric), early termination policy(Median stopping policy - based on running averages of the primary metric of all runs, Truncation selection policy - cancels a given percentage of runs at each evaluation interval)
 
 ## Model Deployment
 
 The automl best run accuracy is 0.84870 and hyperdrive best run accuracy is 0.88888888. So, I deployed the LogisticRegression model using Azure container instance and loaded the script file and env file from automl run and changed the file path to point to LogisticRegression.pkl model
 
-<img alt="EP healthy" src="https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/EPhealthy.png">
+![EP healthy](https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/EPhealthy.png)
 
 We send the request to the EP by randomly getting 3 samples from the dataset, form a dictionary, converting it into json format and sending it to service by using service.run()
 
@@ -61,5 +65,5 @@ We send the request to the EP by randomly getting 3 samples from the dataset, fo
 
 Enabled Application Insights for the web service
 
-<img alt="AI enabled" src="https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/AIenabled.png">
-<img alt="Application Dashboard" src="https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/ApplicationInsights.png">
+![AI enabled](https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/AIenabled.png)
+![Application Dashboard](https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/ApplicationInsights.png)
