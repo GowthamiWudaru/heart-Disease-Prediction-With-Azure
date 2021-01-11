@@ -29,7 +29,7 @@ The model can be improved by further exploring the automl config(like adding cus
 
 ## Hyperparameter Tuning
 
-I chose Logistic Regression model and tuned hyperparameters C(Inverse of regularization strength. Smaller values cause stronger regularization) and max-iter(Maximum number of iterations to converge)
+I chose Logistic Regression model and tuned hyperparameters C(Inverse of regularization strength. Smaller values cause stronger regularization) and max-iter(Maximum number of iterations to converge). I used RandomParameterSampling with params max_iter(can have values 100,200,300,400) and C (can have 0.001, 0.01, 0.1, 1, 10, 100, 1000) and Bandit Policy with evaluation_interval(The frequency for applying the policy) as 2 and slack_factor(The ratio used to calculate the allowed distance from the best performing experiment run) as 0.1.
 
 <img alt="hyperdriverunning" src="https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/hyperdriverunning.png">
 
@@ -45,9 +45,11 @@ The model can be improved further by exploring different sampling techniques(gri
 
 ## Model Deployment
 
-I deployed the model using Azure container instance and loaded the script file and env file from automl run and changed the file path to point to LogisticRegression.pkl model
+The automl best run accuracy is 0.84870 and hyperdrive best run accuracy is 0.88888888. So, I deployed the LogisticRegression model using Azure container instance and loaded the script file and env file from automl run and changed the file path to point to LogisticRegression.pkl model
 
 <img alt="EP healthy" src="https://github.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/blob/main/images_for_readme/EPhealthy.png">
+
+We send the request to the EP by randomly getting 3 samples from the dataset, form a dictionary, converting it into json format and sending it to service by using service.run()
 
 ## Screen Recording
 
