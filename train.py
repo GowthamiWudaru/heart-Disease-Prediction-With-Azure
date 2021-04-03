@@ -9,7 +9,7 @@ import pandas as pd
 from azureml.core.run import Run
 from azureml.data.dataset_factory import TabularDatasetFactory
 
-# Load data from "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
+# Load data 
 ds = TabularDatasetFactory.from_delimited_files("https://raw.githubusercontent.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/main/heartDisease.csv")
 
 df= ds.to_pandas_dataframe()
