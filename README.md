@@ -55,7 +55,7 @@ The automl best run accuracy is 0.84870 and hyperdrive best run accuracy is 0.88
 
 We send the request to the EP by randomly getting 3 samples from the dataset, form a dictionary, converting it into json format and sending it to service by using service.run()
 
-## ![Presentation](https://docs.google.com/presentation/d/1aPJaDqMD10CQkSxsWGI1c4ctl7mlrEiNVq3-N7LJ39U/edit?usp=sharing)
+## [Presentation](https://docs.google.com/presentation/d/1aPJaDqMD10CQkSxsWGI1c4ctl7mlrEiNVq3-N7LJ39U/edit?usp=sharing)
 
 [![Youtube video](https://img.youtube.com/vi/NDxQLzwUdMg/0.jpg)](https://www.youtube.com/watch?v=NDxQLzwUdMg)
 
