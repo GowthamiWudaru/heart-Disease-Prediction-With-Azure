@@ -34,8 +34,8 @@ def main():
     train_accuracy = model.score(x_train, y_train)
     test_accuracy = model.score(x_test, y_test)
     with open('metrics.txt','w') as of:
-        of.write('Train accuracy ', train_accuracy)
-        of.write('Test accuracy ', test_accuracy)
+        of.write('Train accuracy %2.1f%%\n'% train_accuracy)
+        of.write('Test accuracy %2.1f%%\n'% test_accuracy)
         of.close()
 
 if __name__ == '__main__':
