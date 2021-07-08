@@ -18,8 +18,8 @@ def main():
     # Add arguments to script
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--C', type=float, default=1.0, help="Inverse of regularization strength. Smaller values cause stronger regularization")
-    parser.add_argument('--max_iter', type=int, default=100, help="Maximum number of iterations to converge")
+    parser.add_argument('--C', type=float, default=50, help="Inverse of regularization strength. Smaller values cause stronger regularization")
+    parser.add_argument('--max_iter', type=int, default=400, help="Maximum number of iterations to converge")
 
     args = parser.parse_args()
 
@@ -34,8 +34,8 @@ def main():
     train_accuracy = model.score(x_train, y_train)
     test_accuracy = model.score(x_test, y_test)
     with open('metrics.txt','w') as of:
-        of.write('Train accuracy %2.1f%%\n'% train_accuracy)
-        of.write('Test accuracy %2.1f%%\n'% test_accuracy)
+        of.write('Train accuracy %1.3f%%\n'% train_accuracy)
+        of.write('Test accuracy %1.3f%%\n'% test_accuracy)
         of.close()
 
 if __name__ == '__main__':
