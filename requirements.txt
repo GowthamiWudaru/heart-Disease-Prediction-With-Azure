@@ -1,6 +1,5 @@
 sklearn
 argparse
-os
 numpy
 pandas 
 joblib
