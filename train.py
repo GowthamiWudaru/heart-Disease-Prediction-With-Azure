@@ -36,6 +36,7 @@ def main():
     with open('metrics.txt','w') as of:
         of.write('Train accuracy ', train_accuracy)
         of.write('Test accuracy ', test_accuracy)
+        of.close()
 
 if __name__ == '__main__':
     main()
