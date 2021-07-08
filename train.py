@@ -6,18 +6,13 @@ from sklearn.metrics import mean_squared_error
 import joblib
 from sklearn.model_selection import train_test_split
 import pandas as pd
-from azureml.core.run import Run
-from azureml.data.dataset_factory import TabularDatasetFactory
 
 # Load data 
-ds = TabularDatasetFactory.from_delimited_files("https://raw.githubusercontent.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/main/heartDisease.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/main/heartDisease.csv")
 
-df= ds.to_pandas_dataframe()
 y = df['num']
 x = df.drop(['num'], axis=1)
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42)
-
-run = Run.get_context()
 
 def main():
     # Add arguments to script
@@ -36,8 +31,11 @@ def main():
     os.makedirs('outputs',exist_ok=True)
     joblib.dump(model,'outputs/LogisticRegression.pkl')
     
-    accuracy = model.score(x_test, y_test)
-    run.log("Accuracy", np.float(accuracy))
+    train_accuracy = model.score(x_train, y_train)
+    test_accuracy = model.score(x_test, y_test)
+    with open('metrics.txt','w') as of:
+        of.write('Train accuracy ', train_accuracy)
+        of.write('Test accuracy ', test_accuracy)
 
 if __name__ == '__main__':
     main()
