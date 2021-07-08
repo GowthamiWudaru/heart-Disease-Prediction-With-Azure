@@ -5,7 +5,6 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
-      - uses: iterative/setup-cml@v1
       - name: Train model
         run: |
           # Your ML workflow goes here
@@ -17,5 +16,5 @@ jobs:
         run: |
           # Post reports as comments in GitHub PRs
           echo "## Model Metrics" > reports.md
-          cat metrics.txt >> report.md
-          cml-send-comment report.md
+          cat metrics.txt >> reports.md
+          cml-send-comment reports.md
